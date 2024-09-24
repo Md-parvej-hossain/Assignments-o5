@@ -1,5 +1,3 @@
-// button
-
 const buttonDonateNoakhali = allButtonId('btn_noakhali');
 const buttonDonateFeni = allButtonId('btn_Feni');
 const buttonDonateQuota = allButtonId('btn_quota');
@@ -13,10 +11,11 @@ const historyContent = selects('history_itemd');
 const buttonBlog = allButtonId('btn_blog');
 const donation = allButtonId('donation');
 const history = allButtonId('history');
+const donationHistory = allButtonId('btn_donation_history');
 const hisoteSection = selects('history_content');
 const successModal = selects('successModal');
-console.log(successModal);
 const close_btn = allButtonId('close_btn');
+const btn_home = allButtonId('btn_home');
 buttonDonateNoakhali.addEventListener('click', function () {
   const noakhaliInput = inputValue('noakhali_input');
   const noakhaliDonateBalance = textValue('noakhali_donate_balance');
@@ -29,11 +28,10 @@ buttonDonateNoakhali.addEventListener('click', function () {
     successModal.classList.remove('hidden');
     noakhaliHistory();
   } else {
-    alert('Not a Valid Amount !Plise Try Agin');
+    alert('Invalid Donation Amount');
   }
   document.getElementById('noakhali_input').value = '';
 });
-
 buttonDonateFeni.addEventListener('click', function () {
   const feniInput = inputValue('feni_input');
   const feniDonateBalance = textValue('feni_donate_balance');
@@ -42,17 +40,14 @@ buttonDonateFeni.addEventListener('click', function () {
   if (feniInput > 0 && myBalance > feniInput) {
     document.getElementById('feni_donate_balance').innerText =
       crentDonateBalance + ' BDT';
-
     fineHistory();
-
     document.getElementById('My_balance').innerText = mycrantValance + ' BDT';
     successModal.classList.remove('hidden');
   } else {
-    alert('Not a Valid Amount !Plise Try Agin');
+    alert('Invalid Donation Amount');
   }
   document.getElementById('feni_input').value = '';
 });
-
 buttonDonateQuota.addEventListener('click', function () {
   const quotaInput = inputValue('quota_input');
   const quotaDonateBalance = textValue('quota_donate_balance');
@@ -65,7 +60,7 @@ buttonDonateQuota.addEventListener('click', function () {
     document.getElementById('My_balance').innerText = mycrantValance + ' BDT';
     successModal.classList.remove('hidden');
   } else {
-    alert('Not a Valid Amount !Plise Try Agin');
+    alert('Invalid Donation Amount');
   }
   document.getElementById('quota_input').value = '';
 });
@@ -110,7 +105,6 @@ const quoteHistory = function () {
 `;
   historyList.append(historySection);
 };
-//History Butto
 history.addEventListener('click', function () {
   blogContent.classList.add('hidden');
   mainContent.classList.add('hidden');
@@ -118,7 +112,6 @@ history.addEventListener('click', function () {
   donation.classList.remove('bg-[#B4F461]');
   history.classList.add('bg-[#B4F461]');
 });
-//donation
 donation.addEventListener('click', function () {
   blogContent.classList.add('hidden');
   mainContent.classList.remove('hidden');
@@ -130,7 +123,18 @@ buttonBlog.addEventListener('click', function () {
   blogContent.classList.remove('hidden');
   mainContent.classList.add('hidden');
   historyContent.classList.add('hidden');
+  donationHistory.classList.add('hidden');
+  btn_home.classList.remove('hidden');
+  buttonBlog.classList.add('hidden');
 });
 close_btn.addEventListener('click', function () {
   successModal.classList.add('hidden');
+});
+btn_home.addEventListener('click', function () {
+  blogContent.classList.add('hidden');
+  mainContent.classList.remove('hidden');
+  historyContent.classList.add('hidden');
+  donationHistory.classList.remove('hidden');
+  btn_home.classList.add('hidden');
+  buttonBlog.classList.remove('hidden');
 });
